@@ -9,10 +9,11 @@ paper.addEventListener('click', () => {
     let result = winner(playNumber, computer); 
     
     counterPointer(result);
-    end_game(counter);
     alert(`${result} wins`);
     playerSocreLoad();  
     computerSocreLoad();
+    end_game(counter);
+    
 });
 
 let rock = document.querySelector('#rock');
@@ -22,10 +23,10 @@ rock.addEventListener('click', () => {
     let result = winner(playNumber, computer);  
 
     counterPointer(result);
-    end_game(counter);
     alert(`${result} wins`);
-    playerSocreLoad(); 
-    computerSocreLoad(); 
+    playerSocreLoad();  
+    computerSocreLoad();
+    end_game(counter);
 });
 
 let scissor = document.querySelector('#scissor');
@@ -35,10 +36,10 @@ scissor.addEventListener('click', () => {
     let result = winner(playNumber, computer);  
     
     counterPointer(result);
-    end_game(counter);
     alert(`${result} wins`);
     playerSocreLoad();  
     computerSocreLoad();
+    end_game(counter);
 });
 
 function computerChoose() {
@@ -80,8 +81,7 @@ function computerSocreLoad() {
     computer_score_update.textContent = computer;
 }
 function end_game(counter) {
-    if (counter == 5) {
-        window.open('winner.html');
+    if (player == 3 || computer == 3) {
         alert('Game Over');
         if (player > computer) {
             alert('Player wins');
