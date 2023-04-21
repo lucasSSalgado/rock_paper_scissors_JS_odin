@@ -1,73 +1,43 @@
-function computerSelection()  {
-    let ramd = Math.floor(Math.random() * 3);
-    return ramd;
+let counter = 0;
+let player = 0;
+let computer = 0;
+
+let paper = document.querySelector('#paper');
+paper.addEventListener('click', () => {
+    let playNumber = 0;
+    let computer = computerChoose();
+    let result = winner(playNumber, computer);  
+    alert(`${result} wins`);  
+    counterPointer(result);
+});
+
+function computerChoose() {
+    return Math.floor(Math.random() * 3);
 }
-
-function playerSelection() {
-    let option = 15;
-
-    do {
-        option = parseInt(prompt("choose your option: rock (0), paper (1) or scissor (2)"));
-    } while (option != 0 && option != 1 && option != 2);
-
-    return option;
-}
-
-function print_winner() {    
-    let user = playerSelection();
-    console.log(`User choose ${user}!`);
-    let computer = computerSelection();
-    console.log(`Computer choose ${computer}!`);
-
-    if (computer == user)
-    {
-        console.log('Tie!');
-        return 10;
+function winner(player, computer) {
+    if (player === computer) {
+        return 'tie';
     }
-    else if ((user == 0 && computer == 2) || (user == 1 && computer == 0) || (user == 2 && computer == 1))
-    {
-        console.log('User win!');
-        return 1;
+
+    else if ((player == 0 && computer == 1) || 
+             (player == 1 && computer == 2) || 
+             (player == 2 && computer == 0)) {
+        return 'player';
     }
-    else
-    {
-        console.log('Computer win!');
-        return 0;
+
+    else {
+        return 'computer';
     }
 }
-
-function game() {
-    let counter = 0;
-    let players_points = 0;
-    let computers_points = 0;
-
-    while (counter < 5) 
-    {
-        let int = print_winner();
-        if (int == 1)
-        {
-            players_points++;
-        }
-        else if (int == 0)
-        {
-            computers_points++;
-        }
-
-        counter++;
+function counterPointer(result) {
+    counter++;
+    if (result === 'tie') {
+        return;
     }
-
-    if (players_points > computers_points)
-    {
-        console.log(`Players Wins!! playes: ${players_points}; computer ${computers_points}`);
+    else if (result === 'player') {
+        player++;
     }
-    else if (players_points < computers_points)
-    {
-        console.log(`Computer Wins!! playes: ${computers_points}; computer ${players_points}`);
-    }
-    else 
-    {
-        console.log(`Tie! Each playes do ${computers_points} points`);
-    }    
+    else if (result === 'computer') {
+        computer++;
+    } 
 }
-
-game();
