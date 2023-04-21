@@ -16,16 +16,18 @@ body {
     padding-top: 30px;
     font-size: 1.8em;
 }
-#jogo {
+#jogo, #resultado, #dinamica {
     width: 1000px;
     padding: 20px;
     border: 1px solid black;
     border-radius: 15px;
     box-shadow: 5px 5px 10px black;
     margin: 0 auto;
-    background: #ace9e8;
     margin-top: 30px;
     text-align: center;
+}
+#jogo {
+    background-color: rgb(117, 216, 213);
 }
 #options {
     display: flex;
@@ -48,15 +50,8 @@ button:hover {
     cursor: pointer;
 }
 #resultado {
-    width: 100%;width: 1000px;
-    padding: 20px;
-    border: 1px solid black;
-    border-radius: 15px;
-    box-shadow: 5px 5px 10px black;
-    margin: 0 auto;
-    background: #fc86bf;
-    margin-top: 30px;
-    text-align: center; 
+    background: #fc86bf; 
+    margin-bottom: 30px;
 }
 #resultado h1 {
     margin: 10px 0;
@@ -76,6 +71,7 @@ button:hover {
 }
 #pc {
     float: right;
+    margin-right: 80px;
 }
 #clear {
     clear: both;
@@ -83,4 +79,14 @@ button:hover {
 #player_score_update,#pc_score_update {
     margin-top: 25px;
     font-size: 3em;
+}
+.imagem {
+    text-align: center; 
+    padding-top: 15px;
+    border-radius: 15px;
+    border: 1px solid black;
+    background-color: bisque;
+    width: 300px;
+    height: 50px;
+    margin: 0 auto;
 }

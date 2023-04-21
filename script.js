@@ -8,10 +8,10 @@ paper.addEventListener('click', () => {
     let computer = computerChoose();
     let result = winner(playNumber, computer); 
     
+    print_winner(result)
     counterPointer(result);
-    alert(`${result} wins`);
     playerSocreLoad();  
-    computerSocreLoad();
+    computerSocreLoad();    
     end_game(counter);
     
 });
@@ -23,10 +23,11 @@ rock.addEventListener('click', () => {
     let result = winner(playNumber, computer);  
 
     counterPointer(result);
-    alert(`${result} wins`);
+    print_winner(result)
     playerSocreLoad();  
     computerSocreLoad();
-    end_game(counter);
+    end_game(counter)
+    
 });
 
 let scissor = document.querySelector('#scissor');
@@ -36,9 +37,10 @@ scissor.addEventListener('click', () => {
     let result = winner(playNumber, computer);  
     
     counterPointer(result);
-    alert(`${result} wins`);
+    print_winner(result)
     playerSocreLoad();  
     computerSocreLoad();
+
     end_game(counter);
 });
 
@@ -81,16 +83,32 @@ function computerSocreLoad() {
     computer_score_update.textContent = computer;
 }
 function end_game(counter) {
+    let h2Final = document.querySelector('#finalText');
     if (player == 3 || computer == 3) {
-        alert('Game Over');
         if (player > computer) {
-            alert('Player wins');
+            h2Final.textContent = 'Game Over, player wins';
         }
         else if (player < computer) {
-            alert('Computer wins');
+            h2Final.textContent = 'Game Over, computer wins';
         }
         else {
-            alert('Draw');
+            h2Final.textContent = 'Game Over, tie';
         }
+    }
+}
+function print_winner(result) {
+    let finalDiv = document.querySelector('#final');
+    let h2Final = document.querySelector('#finalText');
+
+    finalDiv.classList.add('imagem');
+    finalDiv.appendChild(h2Final);
+    if (result == 'tie') {
+        h2Final.textContent = 'Tie!!!'
+    }
+    else if (result == 'player') {
+        h2Final.textContent = 'Player Wins!!!'
+    }
+    else if (result == 'computer') {
+        h2Final.textContent = 'Computer Wins!!!'
     }
 }
