@@ -1,4 +1,3 @@
-let counter = 0;
 let player = 0;
 let computer = 0;
 
@@ -6,47 +5,32 @@ const paper = document.querySelector('#paper');
 const rock = document.querySelector('#rock');
 const scissor = document.querySelector('#scissor');
 
+// core functions
 paper.addEventListener('click', () => {
     let playNumber = 0;
     let computer = computerChoose();
     let result = winner(playNumber, computer); 
+    auxiliary(result);
     
-    print_winner(result)
-    counterPointer(result);
-    playerSocreLoad();  
-    computerSocreLoad();    
-    let boolean = end_game();
-    console.log(boolean)
-    playAgain(boolean)
     
 });
-
 rock.addEventListener('click', () => {
     let playNumber = 1;
     let computer = computerChoose();
     let result = winner(playNumber, computer);  
 
-    counterPointer(result);
-    print_winner(result)
-    playerSocreLoad();  
-    computerSocreLoad();
-    end_game()
+    auxiliary(result);
     
 });
-
 scissor.addEventListener('click', () => {
     let playNumber = 2;
     let computer = computerChoose();
     let result = winner(playNumber, computer);  
     
-    counterPointer(result);
-    print_winner(result)
-    playerSocreLoad();  
-    computerSocreLoad();
-
-    end_game();
+    auxiliary(result);
 });
 
+// auxiliary function
 function computerChoose() {
     return Math.floor(Math.random() * 3);
 }
@@ -67,7 +51,6 @@ function winner(player, computer) {
     }
 }
 function counterPointer(result) {
-    counter++;
     if (result === 'tie') {
         return;
     }
@@ -78,12 +61,12 @@ function counterPointer(result) {
         computer++;
     } 
 }
-function playerSocreLoad() {
-    let player_score_update = document.querySelector('#player_score_update');
+// DOM function
+function loadScore() {
+    const player_score_update = document.querySelector('#player_score_update');
     player_score_update.textContent = player;
-}
-function computerSocreLoad() {
-    let computer_score_update = document.querySelector('#pc_score_update');
+
+    const computer_score_update = document.querySelector('#pc_score_update');
     computer_score_update.textContent = computer;
 }
 function end_game() {
@@ -104,8 +87,8 @@ function end_game() {
     else { return false; }  
 }
 function print_winner(result) {
-    let finalDiv = document.querySelector('#final');
-    let h2Final = document.querySelector('#finalText');
+    const finalDiv = document.querySelector('#final');
+    const h2Final = document.querySelector('#finalText');
 
     finalDiv.classList.add('imagem');
     finalDiv.appendChild(h2Final);
@@ -120,11 +103,7 @@ function print_winner(result) {
     }
 }
 function playAgain(boolean){
-    if (boolean == false) {
-        return         
-    }
-
-    else { 
+    if (boolean == true) {
         const div = document.getElementById('#playagain-desactive');  
         const button = document.querySelector('#button');
     
@@ -146,5 +125,17 @@ function playAgain(boolean){
             paper.classList.add('able') 
             rock.classList.add('able') 
             scissor.classList.add('able')     
-    }) }
+    })          
+    }
+
+    else { return false; }
+}
+// call the auxiliary functions
+function auxiliary(result) {
+    print_winner(result)
+    counterPointer(result);
+    loadScore()    
+    let boolean = end_game();
+    console.log(boolean)
+    playAgain(boolean) 
 }
