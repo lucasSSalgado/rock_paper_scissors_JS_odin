@@ -2,7 +2,10 @@ let counter = 0;
 let player = 0;
 let computer = 0;
 
-let paper = document.querySelector('#paper');
+const paper = document.querySelector('#paper');
+const rock = document.querySelector('#rock');
+const scissor = document.querySelector('#scissor');
+
 paper.addEventListener('click', () => {
     let playNumber = 0;
     let computer = computerChoose();
@@ -12,11 +15,12 @@ paper.addEventListener('click', () => {
     counterPointer(result);
     playerSocreLoad();  
     computerSocreLoad();    
-    end_game(counter);
+    let boolean = end_game();
+    console.log(boolean)
+    playAgain(boolean)
     
 });
 
-let rock = document.querySelector('#rock');
 rock.addEventListener('click', () => {
     let playNumber = 1;
     let computer = computerChoose();
@@ -26,11 +30,10 @@ rock.addEventListener('click', () => {
     print_winner(result)
     playerSocreLoad();  
     computerSocreLoad();
-    end_game(counter)
+    end_game()
     
 });
 
-let scissor = document.querySelector('#scissor');
 scissor.addEventListener('click', () => {
     let playNumber = 2;
     let computer = computerChoose();
@@ -41,12 +44,13 @@ scissor.addEventListener('click', () => {
     playerSocreLoad();  
     computerSocreLoad();
 
-    end_game(counter);
+    end_game();
 });
 
 function computerChoose() {
     return Math.floor(Math.random() * 3);
 }
+
 function winner(player, computer) {
     if (player === computer) {
         return 'tie';
@@ -82,7 +86,7 @@ function computerSocreLoad() {
     let computer_score_update = document.querySelector('#pc_score_update');
     computer_score_update.textContent = computer;
 }
-function end_game(counter) {
+function end_game() {
     let h2Final = document.querySelector('#finalText');
     if (player == 3 || computer == 3) {
         if (player > computer) {
@@ -94,7 +98,10 @@ function end_game(counter) {
         else {
             h2Final.textContent = 'Game Over, tie';
         }
-    }
+        
+        return true;
+    }  
+    else { return false; }  
 }
 function print_winner(result) {
     let finalDiv = document.querySelector('#final');
@@ -111,4 +118,33 @@ function print_winner(result) {
     else if (result == 'computer') {
         h2Final.textContent = 'Computer Wins!!!'
     }
+}
+function playAgain(boolean){
+    if (boolean == false) {
+        return         
+    }
+
+    else { 
+        const div = document.getElementById('#playagain-desactive');  
+        const button = document.querySelector('#button');
+    
+        div.id = 'playagain-active';
+        button.id = 'visible';
+        button.textContent = 'Play Again';
+
+        paper.classList.add('disable')
+        rock.classList.add('disable')
+        scissor.classList.add('disable')
+
+        button.addEventListener('click', () => {
+            counter = 0;
+            player = 0;
+            computer = 0
+            window.location.reload();
+            div.id = 'playagain-desactive';
+            button.id = 'button';   
+            paper.classList.add('able') 
+            rock.classList.add('able') 
+            scissor.classList.add('able')     
+    }) }
 }

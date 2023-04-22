@@ -1,4 +1,4 @@
-* {
+* { 
     margin: 0;
     padding: 0;
 }
@@ -89,4 +89,39 @@ button:hover {
     width: 300px;
     height: 50px;
     margin: 0 auto;
+}
+#playagain-desactive {
+    visibility: hidden;
+}
+#playagain-active {
+    width: 150px;
+    height: 80px;
+    margin: auto;
+    margin-right: 965px;
+    border-radius: 15px;
+    background-color: rgb(6, 102, 108);
+}
+#button {
+    visibility: hidden;
+    z-index: 10000;
+}
+#visible {
+    visibility: visible;
+    z-index: 10000;
+}
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 9999;
+    pointer-events: auto;
+  }
+.disable {
+    pointer-events: none;
+}
+.able {
+    pointer-events: all;
 }
